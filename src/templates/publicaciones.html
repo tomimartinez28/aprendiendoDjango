@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+
+{% block contenido %}
+    <h2>TODAS MIS PUBLICACIONES:</h2>
+
+    
+
+    
+    {% for post in posteos %}
+        <div class="card m-5">
+            <div class="card-header">
+            {{ post.fecha }}
+            </div>
+            <div class="card-body">
+            <h5 class="card-title">{{ post.titulo }}</h5>
+            <p class="card-text">{{ post.post }}</p>
+            <a href="#" class="btn btn-success">Me gusta!</a>
+            </div>
+        </div>
+    {% endfor %}
+        
+
+{% endblock contenido %}
+    

@@ -22,6 +22,10 @@ LOGIN_URL = 'login/'
 LOGIN_REDIRECT_URL = '../../publicaciones/publicaciones/'
 
 
+# LE DIGO A DJANGO QUE USE MI MODELO PROPIO PARA LOS USUARIOS
+AUTH_USER_MODEL = 'usuarios.Usuario'
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/

@@ -8,10 +8,10 @@
 
         {{ form.as_p }}
 
-        <button type="submit">Iniciar Sesion</button>
+        <button type="submit" class="btn btn-success">Iniciar Sesion</button>
 
     </form>
-
+    <a href="{% url 'usuarios:registrarse' %}"><button class="btn btn-success mt-2">Create una cuenta!</button></a>
 
     
 {% endblock contenido %}

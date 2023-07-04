@@ -5,6 +5,6 @@ app_name = 'publicaciones'
 
 
 urlpatterns = [
-    path('publicaciones/', views.publicacionesView, name = 'publicaciones'),
+    path('publicaciones/', views.VerPublicaciones.as_view(), name = 'publicaciones'),
 ]
 

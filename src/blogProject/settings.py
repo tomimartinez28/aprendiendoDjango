@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # VARIABLES DEL LOGIN
 
-LOGIN_URL = 'login/'
+LOGIN_URL = '/usuarios/login/'
 LOGIN_REDIRECT_URL = '../../publicaciones/publicaciones/'
 
 

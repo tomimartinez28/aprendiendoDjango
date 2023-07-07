@@ -3,11 +3,13 @@
 
 {% block contenido %}
     <h2>Crear un usuario</h2>
-    <form method="post">
-        {% csrf_token %}
-        
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Crear cuenta</button>
-    </form>
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Crear cuenta</button>
+        </form>
+    </div>
 {% endblock contenido %}
     

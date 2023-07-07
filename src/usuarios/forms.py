@@ -7,3 +7,4 @@ class RegistrarseForm(UserCreationForm):
         model = Usuario
         fields = ['first_name', 'last_name', 'username', 'password1', 'password2', 'email', 'telefono', 'domicilio']
 
+        

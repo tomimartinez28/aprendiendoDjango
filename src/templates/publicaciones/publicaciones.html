@@ -16,10 +16,20 @@
             <div class="card-body">
             <h5 class="card-title">{{ post.titulo }}</h5>
             <p class="card-text">{{ post.post }}</p>
+            <p class="card-text">{{ post.categoria }}</p>
             <a href="#" class="btn btn-success">Me gusta!</a>
             </div>
         </div>
     {% endfor %}
+
+
+
+    
+    {% if user.is_authenticated %}
+        <a href="{% url 'publicaciones:postear' %}" class="btn btn-success mb-3">Postear algo nuevo!</a>
+    {% endif %}
+        
+    
         
 
 {% endblock contenido %}

@@ -18,6 +18,7 @@
             <p class="card-text">{{ post.post }}</p>
             <p class="card-text">{{ post.categoria }}</p>
             <a href="#" class="btn btn-success">Me gusta!</a>
+            <a href="{% url 'publicaciones:editar-post' post.id %}" class="btn btn-success">Editar</a>
             </div>
         </div>
     {% endfor %}

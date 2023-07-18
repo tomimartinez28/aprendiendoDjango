@@ -2,17 +2,19 @@
 
 
 {% block contenido %}
+
+<div class="login-container">
     <h2>Iniciar Sesion</h2>
     <form method = "post"> {% csrf_token %}
         
 
         {{ form.as_p }}
 
-        <button type="submit" class="btn btn-success">Iniciar Sesion</button>
+        <button type="submit" class="custom-button">Iniciar Sesion</button>
 
     </form>
-    <a href="{% url 'usuarios:registrarse' %}"><button class="btn btn-success mt-2">Create una cuenta!</button></a>
+    <a href="{% url 'usuarios:registrarse' %}"><button class="custom-button">Create una cuenta!</button></a>
 
-    
+</div> 
 {% endblock contenido %}
     

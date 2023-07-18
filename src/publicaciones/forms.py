@@ -1,5 +1,5 @@
 from django import forms
-from .models import Publicaciones
+from .models import Publicaciones, Comentario
 
 
 class CrearPublicacionForm(forms.ModelForm):
@@ -18,3 +18,8 @@ class CrearPublicacionForm(forms.ModelForm):
             'post' : forms.TextInput(attrs= {'placeholder' : 'Escribi algo...', 'class' : 'form-control'} )
         }
     
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ['texto']

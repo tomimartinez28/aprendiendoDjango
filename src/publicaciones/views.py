@@ -1,10 +1,11 @@
 from typing import Any
 from django.shortcuts import render
-from publicaciones.models import Publicaciones
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .forms import CrearPublicacionForm
+from publicaciones.models import Publicaciones, Comentario
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from .forms import CrearPublicacionForm, ComentarioForm
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from core.mixins import SuperusuarioAutorMixin, ColaboradorMixin
 
 
 # Create your views here.
@@ -32,7 +33,7 @@ class VerPublicaciones(ListView):
     
 
 #View que crear posteos nuevos
-class Postear(LoginRequiredMixin, CreateView):
+class Postear(ColaboradorMixin, LoginRequiredMixin, CreateView):
     model = Publicaciones
     template_name = 'publicaciones/postear.html'
     form_class = CrearPublicacionForm
@@ -47,7 +48,7 @@ class Postear(LoginRequiredMixin, CreateView):
 
 
 #View que actualiza una publicacion ya existente.
-class EditarPost(LoginRequiredMixin, UpdateView):
+class EditarPost(SuperusuarioAutorMixin, LoginRequiredMixin, UpdateView):
     model = Publicaciones
     template_name = 'publicaciones/editar-post.html'
     form_class = CrearPublicacionForm
@@ -57,9 +58,44 @@ class EditarPost(LoginRequiredMixin, UpdateView):
 
 
 # View que elimina un posteo
-class EliminarPost(LoginRequiredMixin, DeleteView):
+class EliminarPost(SuperusuarioAutorMixin, LoginRequiredMixin, DeleteView):
     template_name = 'publicaciones/eliminar-post.html'
     model = Publicaciones
 
     def get_success_url(self):
         return reverse('publicaciones:publicaciones')
+    
+
+class PostDetalle(DetailView):
+    template_name = 'publicaciones/detalle-post.html'
+    model = Publicaciones
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['formulario_comentario'] = ComentarioForm()
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        
+        publicacion = self.get_object()
+        form = ComentarioForm(request.POST) 
+
+
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.autor_id = self.request.user.id
+            comentario.post = publicacion
+            comentario.save()
+            return super().get(request)
+        else:
+            return super().get(request)
+
+
+#View que borra comentarios
+class BorrarComentarioView(SuperusuarioAutorMixin, LoginRequiredMixin, DeleteView):
+    model = Comentario
+    template_name = 'publicaciones/borrar-comentario.html'
+
+    def get_success_url(self):
+        return reverse('publicaciones:detalle-post', args = [self.object.post.id])

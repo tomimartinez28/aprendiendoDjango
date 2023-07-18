@@ -5,7 +5,7 @@ from core import views
 
 
 urlpatterns = [
-    path('index/', views.indexView, name = 'index'),
+    path('', views.indexView, name = 'index'),
 
     # includes
     path('publicaciones/', include('publicaciones.urls')),

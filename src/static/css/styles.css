@@ -1,3 +1,45 @@
-h1 {
-    color: red;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    background-color: #F5F5F5;
+}
+
+.title-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-container {
+    text-align: center;
+}
+
+.login-container{
+    text-align: center;
+    max-width: 60%;
+    margin-top: 15%;
+    border: solid 1px black;
+    border-radius: 20px;
+    padding: 10px;
+    margin-left: 15%;
+    
+}
+
+
+.custom-button {
+    background-color: #2C3E50;
+    color: #F5F5F5;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.custom-button:hover {
+    background-color: #d84939;
 }

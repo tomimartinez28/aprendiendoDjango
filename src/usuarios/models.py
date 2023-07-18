@@ -8,7 +8,7 @@ from django.contrib.auth.models import AbstractUser
 class Usuario(AbstractUser):
     telefono = models.CharField(max_length=255)
     domicilio = models.CharField(max_length=255, blank=True, null=True)
-    es_admin = models.BooleanField(default=False)
+    es_colaborador = models.BooleanField(default=False)
 
 
 

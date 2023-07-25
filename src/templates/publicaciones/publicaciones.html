@@ -6,6 +6,37 @@
 
 <div class="post-container">
 
+    <form action="" method="get">
+
+        <select name="categoria" id="">
+
+                <option value="">Todas</option>
+            {% for categoria in categorias  %}
+                <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+            {% endfor %}
+                
+        </select>
+
+        <select name="orderby" id="">
+            <option value="">Ordenar por</option>
+            <option value="fecha_asc">Fecha ascendente</option>
+            <option value="fecha_desc">Fecha descendente</option>
+            <option value="alf_asc">Alfabeticamente ascendente</option>
+            <option value="alf_desc">Alfabeticamente descendente</option>
+        
+        </select>
+
+
+
+        <button type="submit">Filtrar</button>
+    </form>
+
+
+
+
+
+
+
     <h2>TODAS MIS PUBLICACIONES</h2>
 
     {% for post in posteos %}

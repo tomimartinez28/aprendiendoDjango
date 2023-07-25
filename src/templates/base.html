@@ -43,9 +43,34 @@
 
           
           {% if user.is_authenticated %}
+
+            
+            {% if user.imagen_perfil %}
+            <img src="{{user.imagen_perfil.url}}" alt="imagen de perfil" class="rounded-circle" width="30" height="30">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{ user.first_name }}
             </a>
+
+            {% else %}
+
+
+            <img src="{% static 'img/defaultAvatar.webp' %}" alt="imagen de perfil" class="rounded-circle" width="30" height="30">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ user.first_name }}
+            </a>
+
+
+
+            {% endif %}
+              
+          
+
+
+
+
+
+
+
 
             {% else %}
 

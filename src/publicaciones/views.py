@@ -1,12 +1,12 @@
 from typing import Any
-from django.shortcuts import render
+from django.shortcuts import redirect
 from publicaciones.models import Publicaciones, Comentario
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .forms import CrearPublicacionForm, ComentarioForm
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from core.mixins import SuperusuarioAutorMixin, ColaboradorMixin
-
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 
@@ -77,6 +77,9 @@ class PostDetalle(DetailView):
         return context
     
     def post(self, request, *args, **kwargs):
+
+        if not self.request.user.is_authenticated:
+            return redirect('usuarios:login')
         
         publicacion = self.get_object()
         form = ComentarioForm(request.POST) 

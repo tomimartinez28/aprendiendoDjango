@@ -1,5 +1,5 @@
 from typing import Any
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from publicaciones.models import Publicaciones, Comentario, Categoria
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .forms import CrearPublicacionForm, ComentarioForm
@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from core.mixins import SuperusuarioAutorMixin, ColaboradorMixin
 from django.core.exceptions import PermissionDenied
+
 
 # Create your views here.
 
@@ -134,3 +135,18 @@ class BorrarComentarioView(SuperusuarioAutorMixin, LoginRequiredMixin, DeleteVie
 
     def get_success_url(self):
         return reverse('publicaciones:detalle-post', args = [self.object.post.id])
+    
+
+
+def me_gusta(request):
+    if request.method == 'POST':
+        publicacion_id = request.POST.get('publicacion_id')
+        publicacion = get_object_or_404(Publicaciones, id = publicacion_id)
+        usuario = request.user
+
+        if publicacion.meGusta.filter(id=usuario.id).exists():
+            publicacion.meGusta.remove(usuario)
+        else:
+            publicacion.meGusta.add(usuario)
+
+    return redirect('publicaciones:publicaciones')

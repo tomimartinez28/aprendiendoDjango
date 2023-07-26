@@ -49,7 +49,40 @@
             <p class="card-text">{{ post.post }}</p>
             <p class="card-text">{{ post.categoria }}</p>
             <p class="card-text">{{ post.creador }}</p>
+
+
+            <form action="{% url 'publicaciones:me-gusta' %}" method="post">{% csrf_token %}
+                <input type="hidden" name="publicacion_id" value="{{post.id}}">
+
+
+                
+                {% if user in post.meGusta.all %}
+                <button type="submit" class="custom-button">Ya no me gusta</button>
+
+                {% else %}
+                <button type="submit" class="custom-button">me gusta!</button>
+
+                {% endif %}
+                    
+                
+
+
+
+
+            </form>
+
+
+
+
+
+
+
+
+
             <a href="{% url 'publicaciones:detalle-post' post.id %}" class="custom-button">Indagar en profundidad</a>
+
+
+
 
 
 

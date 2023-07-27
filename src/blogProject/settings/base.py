@@ -34,7 +34,7 @@ AUTH_USER_MODEL = 'usuarios.Usuario'
 SECRET_KEY = 'django-insecure-kjyn6!pk@q)-kfi(v7tmelf5**_o9f+1k$0g11d*05lfn3yo3w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['tomimartinez28.pythonanywhere.com', '127.0.0.1']
 
@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'core',
     'publicaciones',
     'usuarios',
+    'contacto',
+
 ]
 
 MIDDLEWARE = [

@@ -10,11 +10,11 @@
 
         <select name="categoria" id="">
 
-                <option value="">Todas</option>
-            {% for categoria in categorias  %}
-                <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+            <option value="">Todas</option>
+            {% for categoria in categorias %}
+            <option value="{{categoria.id}}">{{categoria.nombre}}</option>
             {% endfor %}
-                
+
         </select>
 
         <select name="orderby" id="">
@@ -23,7 +23,7 @@
             <option value="fecha_desc">Fecha descendente</option>
             <option value="alf_asc">Alfabeticamente ascendente</option>
             <option value="alf_desc">Alfabeticamente descendente</option>
-        
+
         </select>
 
 
@@ -55,7 +55,7 @@
                 <input type="hidden" name="publicacion_id" value="{{post.id}}">
 
 
-                
+
                 {% if user in post.meGusta.all %}
                 <button type="submit" class="custom-button">Ya no me gusta</button>
 
@@ -63,8 +63,8 @@
                 <button type="submit" class="custom-button">me gusta!</button>
 
                 {% endif %}
-                    
-                
+
+
 
 
 
@@ -107,6 +107,80 @@
 {% if user.is_authenticated %}
 <a href="{% url 'publicaciones:postear' %}" class="custom-button">Postear algo nuevo!</a>
 {% endif %}
+
+
+
+
+<!-- PAGINADOR -->
+
+{% if is_paginated %}
+
+<nav aria-label="Page navigation example" class="mt-5">
+
+    <ul class="pagination">
+
+
+
+        
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item">
+                <a class="page-link disabled" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+        {% endif %}
+            
+  
+
+
+
+
+        
+        {% for pagina in paginator.page_range %}
+            <li class="page-item"><a class="page-link {% if page_obj.number == pagina %} active {% endif %}
+                " href="?page={{pagina}}">{{ pagina }}</a></li>
+        {% endfor %}
+            
+        
+
+
+
+
+        
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page= {{ page_obj.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item">
+                <a class="page-link disabled" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+
+        {% endif %}
+            
+
+
+
+
+    </ul>
+</nav>
+
+    
+{% endif %}
+    
+
+
 
 
 

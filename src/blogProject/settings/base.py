@@ -34,7 +34,7 @@ AUTH_USER_MODEL = 'usuarios.Usuario'
 SECRET_KEY = 'django-insecure-kjyn6!pk@q)-kfi(v7tmelf5**_o9f+1k$0g11d*05lfn3yo3w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['tomimartinez28.pythonanywhere.com', '127.0.0.1']
 
@@ -151,8 +151,9 @@ if not DEBUG:
 # ARCHIVOS MEDIA
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
+print('================================')
+print(MEDIA_ROOT)
+print('================================')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
